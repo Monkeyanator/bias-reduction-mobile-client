@@ -27,4 +27,13 @@ export class ApiService{
       });
   }
 
+  public register_clickthrough(article_id: String, token: String){
+        let body = {article: article_id}
+        let headers = new Headers();
+        headers.append("Authorization", "Token " + token)
+
+        return this._http.post(this.baseEndpoint + 'clickthroughs/', body, {headers: headers})
+          .map((res: Response) => res.json());
+  }
+
 }

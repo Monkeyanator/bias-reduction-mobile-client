@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let article of articles" text-wrap>
+    <ion-item *ngFor="let article of articles" (tap)="registerTap(article.id)" text-wrap>
         <img class="article-image" [src]="article.imageUrl"/>
     <div class="article-title"> {{article.title}} </div>
     <p class="article-description"> {{article.description}} </p>
