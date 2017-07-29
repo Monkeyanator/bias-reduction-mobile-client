@@ -3,17 +3,28 @@ import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/map'
 import { Article } from "../models/article.model";
+import { Storage } from "@ionic/storage";
 
 @Injectable()
 export class ApiService{
 
   readonly baseEndpoint: string = "https://mysterious-earth-94939.herokuapp.com/";
 
-  constructor(private _http: Http){}
+  constructor(private _http: Http, private _storage: Storage){}
 
   public get_articles(): Observable<Article[]>{
     return this._http.get(this.baseEndpoint + 'articles/')
       .map((res: Response) => res.json())
+  }
+
+  public get_auth_token(username: String, password: String) {
+    let body = {username: username, password: password}
+    return this._http.post(this.baseEndpoint + 'api-token-auth/', body)
+      .map((res:Response) => {
+        let jsonResponse = res.json()
+        this._storage.set('auth_token', jsonResponse.token)
+        return jsonResponse
+      });
   }
 
 }
