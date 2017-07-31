@@ -35,7 +35,7 @@ export class LoginPage {
   createAccount(){
     this._api.create_account(this.loginCredentials.username, this.loginCredentials.password)
       .subscribe(responseData => {
-        this.sendLoginCredentials();
+        this.sendLoginCredentials(); 
       },
       err => console.log("Could not create account!"))
   }
