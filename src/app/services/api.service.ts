@@ -17,7 +17,9 @@ export class ApiService{
       .map((res: Response) => res.json())
   }
 
-  public get_auth_token(username: String, password: String) {
+  //get auth token for username password combination
+  //if token given in resonse, store in local storage
+  public get_auth_token(username: string, password: string) {
     let body = {username: username, password: password}
     return this._http.post(this.baseEndpoint + 'api-token-auth/', body)
       .map((res:Response) => {
@@ -25,6 +27,12 @@ export class ApiService{
         this._storage.set('auth_token', jsonResponse.token)
         return jsonResponse
       });
+  }
+
+  public create_account(username: string, password: string){
+    let body = {username: username, password: password}
+    return this._http.post(this.baseEndpoint + 'users/', body)
+      .map((res: Response) => res.json())
   }
 
   public register_clickthrough(article_id: String, token: String){

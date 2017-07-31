@@ -43,11 +43,6 @@ export class HomePage {
     this._api.get_articles()
         .subscribe(data => this.articles = data)
 
-    this._api.get_auth_token("sam", "sam")
-      .subscribe(tokenData => {
-        console.log(tokenData.token)
-      })
-
   }
 
 }
