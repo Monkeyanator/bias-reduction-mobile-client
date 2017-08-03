@@ -9,6 +9,7 @@ import { Storage } from "@ionic/storage";
 export class ApiService{
 
   readonly baseEndpoint: string = "https://mysterious-earth-94939.herokuapp.com/";
+  //readonly baseEndpoint: string = "http://localhost:8000/"
 
   constructor(private _http: Http, private _storage: Storage){}
 
